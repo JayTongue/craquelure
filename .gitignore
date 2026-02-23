@@ -1,0 +1,10 @@
+./README.md  
+./__pycache__    
+./cleanenv  
+flask_app.py  
+main.py  
+pyproject.toml  
+requirements.txt  
+./static  
+templates  
+uv.lock
