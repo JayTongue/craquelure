@@ -1,0 +1,116 @@
+---
+title: Cognitive Debt
+subtitle: My Thoughts on the MIT Research Paper on how LLM makes us Stupid
+created: 2025-06-25
+edited: 2025-06-27
+tags: ['AI', 'Hot Takes']
+---
+
+<p class="indented">This article are some soft reflections on a <a href="https://arxiv.org/pdf/2506.08872">recent paper</a> from MIT.</p>
+
+<p class="indented">In this article, the authors study the effect of LLMs on users' congition. Broadly, the study asked subjects to write an essay and compares the performance, experience, and outcomes of those who used LLMs, those who used a general search engine, and those who had neither. There are a ton of interesting conclusions from this article, but some stood out to me:</p>
+
+<p>
+    <ol>
+<ul style="list-style-type:disc;">
+<li>1. LLM use led to repeated focus on a narrower set of ideas</li>
+<li>2. LLM use decreased critical engagement with material provided by the LLM</li>
+<li>3. LLM use decreased the cognitive effort required in the task</li>
+<li>4. Cognitive debt</li>
+</ul>
+</ol>
+</p>
+
+<p class="indented">This last point really interested me because I've recently been thinking a lot about a similar-sounding topic, tech debt. </p>
+
+<p class="indented">I haven't been programming for very long. I had not written a single line of code before 2023, when I accidently took a python class because it had a cool name. Although I instantly started using it at work to automate or simplify repetitive tasks, it was a while before I actually started writing code that I wanted to reuse and maintain. Today, I maintain, a number of projects and scripts both at work and at home and have increasingly had to maintain them and appreciate avoiding tech debt. </p>
+
+<h3>What is meant by tech debt?</h3>
+
+<p class="indented">While a bit of debt comes from just the need to maintain code, tech debt is often specifically used to refer to the additional cost that is incurred by not doing things correctly in the first place. </p>
+
+<p class="indented">Consider this example. One thing I like to do is build little scripts to keep track of scores of card games across multiple rounds. Think something like Dutch Blitz or Five Crowns. My first version of building this script looked something like this:
+
+<div class="black-box">score_dict = {'Alice': 0, 'John': 0, 'Taylor': 0}
+for player in score_dict:
+	score_dict[player] += int(input(f'What did {player} score this round? '))
+</div>
+
+While this works, the game only works for Alice, John, and Taylor. This is quick and easy, and if you're coding this in between hands as all your friends are trying to just play the game ("Come ON dude, it's your turn"), it might be the most appropriate way of doing it. However, a better approach may look like this:
+
+<div class="black-box">score_dict = {}
+while True:
+	player_name = str(input('Enter player name: '))
+	if not player_name:
+		break
+	else:
+		score_dict[player_name] = 0
+for player in score_dict:
+	score_dict[player] += int(input(f'What did {player} score this round? '))
+</div>
+
+This version is far more flexible and allows for an infinite amount of names that the user can specify each time the code is run. We could even do more. The code could check to see if all the names are unique. A try/except block could handle errors gracefully if the score doens't convert into an integer. The code could check that the scores are always positive. These are the sort of thing that I'd stick in a TODO and bang out on a long flight.</p>
+
+<p class="indented">My mental apporoach of what is needed and what isn't is a simple cost/benefit analysis. Something like flexible names and number of players has a huge impact on usability. But if I'm the person typing in all the score, making sure they convert to int and are all positive isn't that big of a deal. I'm not deploying this online, so Hyrum's Law need not apply. There's very little debt from leaving these corners cut. </p>
+
+<p>Although this is a very small demonstration, if you manage a tech product, tech debt can be crippling. Especially as multiple people have to work with a large code base, not the cost of not doing things correctly the first time can often be exponential. The gambit is to not have so much up-front cost to reduce tech debt vs. ease of initial deployment but maximum tech debt to be paid down the line. Much like financial debt, wisdom comes from being able assess the burdens of those debts in the context of where you are likely to be in the future. This is a part of being a good manager.</p>
+
+<h3>Congitive debt</h3>
+
+<p class="indented">Cognitive debt, as used in the context of this research paper, refers to a similar concept. Writing an essay with an LLM reduces mental effort in the short term, but has costs in the long term. The article describes some of these costs: diminished critical inquiry, increased vulnerability to manipulation, decreased creativity, decreased ownership, and overall shallow engagement with the topic. </p>
+
+<p class="indented">However, these aren't quite the same. Tech debt is incurred because of the reality of the code- unimplemented features, lack of error handling, missing tests, or bad documentation. This debt is defined by a mechanical shortcoming in the product from what it should be.</p>
+
+<p class="indented">Convserely, seeing cognitive debt in the same way requires you to import an expectation of an alternative outcome. First of all, if you use an LLM to write an essay, no one is making you uncriticaly submit what the LLM spits out. You could full well the the opportunity to do the same cognitive work as you would have done if you didn't have the LLM. Secondly, the perception of this lack of cognitive engagement as "debt" requires a comparison to what the outcome would be if you had undertaken that cognitive engagement.</p>
+
+<p class="indented">Why would someone who could write a well researched and critically examined essay turn in just something LLM generated? There is a strong normative perception that doing so is "good enough". In her book <em>Algorithms of Oppression</em>, Dr. Safiya Noble describes how Google perpetuates disinformation and bias not only because of the non-neutrality of how the results are retrieved and presented, but also because there is a presumption of neutrality and authority. She describes how this expectation that the results are high-quality and reliable leads widespread systemic problems. The same presumption definitely exists right now for LLM generated text. I would assume especially among those who don't have a good grasp of what an LLM is and how it works.</p>
+
+<h3>Is it good enough?</h3>
+
+<p class="indented">Imagine you are asked to participate in a study. You agree, and gladly sit in a room with some other participents and fill out a backgorund questionaire. Then they put some funny headgear on you and asks you to do an essay writing task with an LLM. Would you really be incentivized to meticulously examine the LLMs work? Are you incentivized to take ownership of the product or the process? I would gander not. This is not a criticism of the study. I think the design and methodology are good. I simply want to clarify what is being measured and compared. </p>
+
+<p class="indented">Imagine someone using an LLM tool in a context where their writing matters a lot. For instance, writing a legal brief. There is a lot of incentive to critically read and correct the text generated by an LLM. I would guess that a lot of the difference in cognitive effort and engagement between the LLM group and the other groups would be closed. (I know that ironically, I am using this as an example when multiple instances of high-profile LLM use disasters have been with legal writing.)</p>
+
+<h3>Comparisons With Future You</h3>
+
+<p>The other thing I find super interesting about cognitive debt is the necessary comparison with where the writer would be if they had written the essay without an LLM. Unlike tech debt, where something concretely doens't work the way it should down the line, there is no binding reason why that person ought to be smarter in the future. One can argue that there are moral or utilitarian reasons that people ought to undertake cognitive development, but these also have to be imported.</p>
+
+<p>The most facinating part for me is that this comparison feels natural, at least in some part, because LLMs are a relatively new technology. Until a few years ago, there wasn't really an option except to do the thinking and writing yourself, except plagerism.</p>
+
+<p>And that's facinating because plagerism in an academic setting is about the instrumentalization of originality as a measure of cognitive effort. Imagine a math worksheet where there are points on offer. Everyone has had the experience of getting the right answer, but either not showing work or showing the wrong work, miss out on points. The point of grading in this way is to reward the cognitive effort of working through a problem, not just the answer. For a writing assignment, however, it's almost impossible to truly get the "same" answer the way you can in math or science. Instead, plagerism detection relies on identifying substantial similarity between your submission and known works. It looks for originality as the mark of having undertaken that learning process.</p>
+
+<p> So you plagerize and get caught. The teacher accuses you of cheating. However, what have you cheated? You can claim that the essay you submitted is an academically adquate response to the given prompt, and therefore you have given the teacher what was asked for. However, everyone knows that won't work, because the point was never that your submission answers the prompt. The point was that you did the work.</p>
+
+<p>This idea of cognitive debt, as I see it, is about the same thing. In order to get our full "value" from someone writing an essay, there both needs to be an essay and the writing of the essay. The "debt" is a failure of growth and development, a failure to be and become something, a failure to manifest a potentiality.</p>
+
+<p>There is no binding imperative to become smarter. But by recognizing cognitive debt, we create one.</p>
+
+<h3>Cognitive Debt and Efficiency</h3>
+
+<p class="indented">I'm constantly in awe of two people whom I follow. The first is Cory Doctorow. In addition to being a prolific writer of books, he also writes an almost <a href="https://pluralistic.net/">daily blog</a>, and sometimes he'll even write articles for other outlets. His style is precise, expressive, and enviably effective at communicating his thoughts.</p>
+
+<p class="indented">The second person is Prof. Heather Cox Richardson, who taught me American History at Boston College. After graduation, I got put onto her substack. In addition to books, she likewise writes an almost daily newsletter discussing recent news and historical events. She is such a brilliant and insightful historian, a bullseye researcher, and also a frighteningly effective communicator.</p>
+
+<p class="indented">Both these writers care a lot about their writing, and they are both terribly good at it. I assume that this is due to having written thousands and thousands of words over the years. Would using an LLM make their job easier? Honestly, I don't think so. They convey their intellectual content with the words they use so well because they have honed a skill that allows them to do so. To make an LLM write like they do would require laborious correction that would probably be more cost more cognition and time than just writing it themselves.</p>
+
+<p>They could use an LLM, but why would they? They care about the end product so much that they refuse to let it be slop. They refuse to be selfish with their time and effort, the withhold cost of producing the writing they want written. And even though this may not overtly have been their goal, writing all those books and posts made them into great writers.</p>
+
+<p class="indented">And I don't think this is unique to writing. If an artist uses a vision model and cares enough, they will take ownship of a vision model's output and make the output that upholds their artistic vision and integrity. If a musician cares enough and they use an audio model, their end result will be music that is coherent with what they want to put into the world. And if they care about their personal development as writers, musicians, and artists, there is nothing about these tools that prevents them from deeply engaging with the output and using those opportunities for growth.</p>
+
+<p class="indented">People using LLMs leads to slop writing because they don't care enough to not make slop. People make slop music and art because they don't care enough to not make slop music and art. If the bullet that tears into society is endless shrimp Jesus images and meaningless books of "poetry" printed on demand from Amazon, then the gun they are fired from is a gun of human failure to care. AI-facilitated cognitive debt is just a human failure to care either about the product or who we are becoming.</p>
+
+<h3>Are We Necessarily Cooked?</h3>
+
+<p class="indented">Not necessarily. Instead, I think this is an opportunity to be deliberate about what congitive tasks we undertake and which ones we offload. Using your phone to calculate the tip or how to split a bill offloads some congitive effort, but you are still intentionally using a tool that performs a discreet and predicatable function. You can also predict the utility of the result. I think a part of responsible AI usage looks like that.</p>
+
+<p>This falls pretty inline with the "AI for chores" principle that I've discussed before. I think there are a lot of situations where an LLM, as a stochastic word calculator parrot of the internet, could be responsibly and beneficially used.</p>
+
+<h3>But Will We Be Cooked?</h3>
+
+<p>Probably. The issue is incentives. Earlier, I discussed the impulse to see LLM output as authoritative and high-quality, but there are a number of other forces at play as well. A large one is incentives. There are already a frightening number of books available online that are LLM written and/or LLM illustrated. It's so easy to get an AI tool to churn out an ebook and just print on demand from a commerce platform like Amazon. The motivation for this is obvious- money. It's easy to see why executives replace content writers on sites with LLMs that churn out reviews of products they've never used- money. It's easy to see why companies slash customer support reps and deploy pointless chat bots that can't provide any service and don't understand the company's policies- money.</p>
+
+<p>According to Ed Zitron, more investment capital has been pumped into AI than anything ever in the history of humanity. Is Peter Theil doing this out of the goodness of his own heart? Is does Elon Musk give money for the love of humankind? Is Mark Zuckerberg trying to improve life on Earth for all? Of course not. They don't just want us to consume slop, they want to feed it to us as profitably as possible.</p>
+
+<p>The last incentive, and a very nontrivial one, is that doing cognitive work is hard. Doing research is difficult. Writing well is hard. Breaking problems down in order to be able to better understand them is challenging. But it can also be fun. And the more you do it, the more likely it is to be fun, the better you get at it, and easier it will be for you.</p>
+
+<p>You just need to care. You just need to decide that slop isn't good enough. You just need to invest time and energy into yourself. For those dependent on AI, the slop will be a ceiling, but if you invest in developing those skills and finding joy in them, the slop is a floor that you can rise above.</p>

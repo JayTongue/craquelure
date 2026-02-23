@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="centered">
+  {% if tag_filter %}
+  <h2>TAG: "{{ tag_filter.replace('-', ' ') }}"</h2>
+  <p><a href="{{ url_for('home') }}">← Back to articles</a></p>
+  <br>
+  {% else %}
+  <h2> Articles</h2>
+{% endif %}
+  <p>---------------------</p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="tight-list">
+      <ul>
+        {% for article in articles %}
+          <li>
+                <a href="{{ url_for('article', name=article.slug) }}", style="font-size: 20px;">
+                    <strong>{{ article.title }}</strong>
+                </a><br>
+                {% if article.subtitle %}
+                    <em>{{ article.subtitle }}</em><br>
+                {% endif %}
+                <strong>Created:</strong> <span style="font-size: 0.85em;">{{ article.created }}</span><br>
+                <strong>Last Edited:</strong> <span style="font-size: 0.85em;">{{ article.edited }}</span><br>
+                <strong>Tags:</strong>
+                {% for tag in article.tags %}
+                  <a href="{{ url_for('tag_page', tag_slug=tag|slugify) }}" class="tag">{{ tag }}</a>
+                {% endfor %}
+                <br>
+        </li>
+        {% endfor %}
+      </ul>
+      </div>
+  </div>
+ </div>
+{% endblock %}

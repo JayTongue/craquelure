@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+
+  <div class="article-title">{{ title }}</div>
+
+  {% if subtitle %}
+    <em>{{ subtitle }}</em><br>
+  {% endif %}
+
+  <strong>Created:</strong> {{ created }}<br>
+  <strong>Last Edited:</strong> {{ edited }}<br>
+    <strong>Tags:</strong>
+    {% for tag in tags %}
+      <a href="{{ url_for('tag_page', tag_slug=tag|slugify) }}" class="tag">{{ tag }}</a>
+    {% endfor %}
+    <br>
+
+  <div class="centered"><p>-----------------------</p></div>
+
+
+    {{ content|safe }}
+
+        <br>
+        <br>
+        <br>
+  <div class="white-link">
+    <p><a href="{{ url_for('home') }}">← Back to articles</a></p>
+  </div>
+</div>
+{% endblock %}
