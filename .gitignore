@@ -1,4 +1,5 @@
-./README.md  
-./__pycache__    
-./cleanenv  
-./static  
+__pycache__/
+*.pyc
+cleanenv/
+uv.lock
+pyproject.toml
