@@ -1,4 +1,5 @@
-from flask import Flask, render_template, abort, Markup, send_from_directory, url_for
+from flask import Flask, render_template, abort, send_from_directory, url_for
+from markupsafe import Markup
 import os
 import frontmatter
 from slugify import slugify
