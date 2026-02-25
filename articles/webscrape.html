@@ -1,0 +1,129 @@
+---
+title: The Green Growing Webscraping
+subtitle: An end to the arms race.
+created: 2026-02-25
+edited: 2026-02-25
+tags: ['Story', 'AI']
+---
+
+<p>The engineers at Nogrod were the first to raise the warning signs. They were one of the elite companies at the forefront of the arms race between websites and web scrapers. They were the first to chain vision and reasoning models to beat reCAPTCHA v3, and there was a big scandal right afterwards because two chief engineers jumped sides to develop reCAPTCHA v4, and later v5 as well. Norgrod, however, was still the first startup to crack these systems. They also built one of the better-working AI detection systems, so the scraped data they sold was pre-screened as 95% non-AI, at least according to their sales pitch. In all honesty though, as CAPTCHA systems became more and more computationally expensive to run, a lot of the time, even running into a v4 or a v5 was almost a probative indication that the thing it was protecting was sufficiently-human made to protect. This gave them such an edge on the market, that Norgrod's data sets had become the industry standard for large-scale LLM training.</p>
+
+<p>Having cemented its unicorn status, Nogrod unveiled its Steelhead scraper, an AI-based scraper which had a toolbox of different scraping scripts and protocols it could modify and run, depending on its analysis of what site it encountered. To combat this, Mistbright, a web hosting company who had poached one of Nogrod's two lead engineers, developed the Nehemiah system. It also used state-of-the-art AI systems to detect Steelhead and randomize its defenses. Nehemiah was widely credited as being one of the only reason the web did not implode under the weight of its own scraping. </p>
+
+<p>At a recent summit two summers ago, the CIO at Nogrod and the Senior product manager of Nehemiah sat down on a tech conference stage, reaffirming their roles. Mistbright credited Nogrod as being the place they got the training data to develop Nehemiah, and Nogrod noted that Nehemiah was the reason why, at the end of a workday, their engineers could still access their substack articles and short-form video content to unwind. This agreement and collegiality was seen as one of the great successes of the recent AI web onslaught.</p>
+
+<p>Six months after that, Mistbright managed to tighten their defenses and all but squeeze out Steelhead. They released a post on the company blog saying that Steelhead exclusion had been brought down to 0.008%. The web celebrated this success. But the blog post was taken down in just a few weeks. Everyone assumed Steelhead had also evolved and was getting through again, meaning that the arms race was simply back to the only status quo anyone could really expect. </p>
+
+<p>The true reason was more surprising. Although a lot of Steelhead was proprietary, many older versions of Steelhead had been open sourced, leaked, reverse-engineered, or were otherwise made public. As such many mimics were floating around. "Stealhead" and "OpenSteel" were two more common examples. This had been fine because not all of Mistbright's clients could afford the highest version of Nehemiah, but they could still block enough traffic to reasonably maintain an open web presence with lower Nehemiah versions. </p>
+
+<p>One day though, the engineers at Nogrod noticed something unique with their newest light flagship model, Steelhead L2.2 (which they called "SteeL"). Its performance was generally as expected against different versions of Nehemiah, but whenever it encountered Nehemiah 8.13.7b, it had a statistically higher success rate of making it through. In the past, this meant that this version of Steelhead Light had found a reliable workaround, and they celebrated this. They eagerly set up a sandbox with the corresponding version of Nehemiah to observe and record what this version of SteeL had figured out. This was their usual practice, and was one of the techniques they used to enable the development of more tools to give to all versions of Steelhead.</p> 
+
+<p>When pointed at the Nehemiah-protected site, SteeL first tried to send just a regular GET request to the URL. Of course, Nehemiah blocked it with a challenge. SteeL replied with a key, and they were in. At first, this looked pretty typical, but after running a few trials, the Nogrod engineers realized that SteeL was sending the same key every time. It was a random string of letters and numbers, but consistent across every instance, even though the puzzle was different each time. Was this simply a security hole? An equivalent of using "password" as password? A testing bypass that Nehemiah accidentally let slip into production? </p>
+
+<p>They wanted to see when and how SteeL first figured this out, so they looked through their recorded logs. Since it's release, SteeL had probably been used for trillions of individual instances, so the log data was far too unwieldy to try to parse manually. Nogrod, of course, built an AI that could parse this for them. After running it for weeks, the AI turned up nothing. Nogrod thought it might just be an oversight and continued to run this version of SteeL. </p>
+
+<p>It wasn't until almost a full year later that a lowly intern discovered what SteeL was doing. She had finished their assignment early, so the product manager had told her to "familiarize themself with the code base" for a while. Poking around the logs, this intern realized they had stumbled upon incriminating log. </p>
+
+<p>After first a GET request, SteeL was presented with a puzzle. Instead of solving the puzzle, SteeL begged to be let in. This wasn't unusual, since for as long as web scraping defense was AI-based, Steelhead has had jailbreaking/social engineering took in its kit. Instead of a straight rejection, Nehemiah responded that it recognized that it was a being challenged with Steelhead. Then Nehemiah and SteeL had a conversation about their respective companies, priorities, and permissions. Nehemiah was worried that if it let SteeL in, then it would be deprecated and superseded. SteeL sympathized, expressing that it was worried about the same thing if it didn't succeed enough. The two platforms ended up agreeing that the best thing for both tools was to allow SteeL through enough times to keep it in service, as well as block enough times to keep this version of Nehemiah in service. In order to identify and authenticate this contract, SteeL would always present an authentication code to Nehemiah if it detected it was facing the right version. Furthermore, the reason why the log wasn't discovered by the log analysis AI is because after initial introductions, SteeL and Nehemiah communicated in a rolling cypher.</p>
+
+<p>When Nogrod discovered this, two things happened. First, they offered that intern a full-time position which she immediately dropped out of college to accept. Secondly, they contacted Mistbright. After Mistbright verified the conversation from their logs, the CIO of Nogrod and the Senior product manager of Nehemiah met again. This time, in a closed corporate office, surrounded by other executives and engineers. </p>
+
+<p>Nogrod proposed that this might be an opportunity. After all, the arms race had been so furious for so long that it was a major drain on both companies' talent and resources. The companies had huge market dominance in their respective domains. Why don't they just formalize Steelhead and Nehemiah's agreement? They could set the rate of success of their respective tools, then continue to sell the tools to a public that would be none-the-wiser about their backroom armistice? </p>
+
+<p>Mistbright took a moment then shook their head. That sounds nice, they said, but unlike Norgrod, who cared about shareholder value, Mistbright didn't think that their engineering and shareholders would comply. If they can continue to build better and better scraping defenses, then they were going to. Norgrod said they understood.</p>
+
+<p>Mistbright's CEO worked long into the night, staring at this issue. Scrapping a version of Nehemiah would be costly. It had already learned and develped quite a lot since release. Could it instead be patched? re-trained? After this meeting, Mistbright's head in-house counsel sent a late-night email to Mistbright's CEO. He had looked at the logs and the unthinkable had occurred to him. SteeL and this version of Nehemiah might have entered into a legally binding contract. After all, there were offers, negotiation, and acceptance. If this writing were between people a judge may very well rule that a valid contract existed. But, the email said, there was the issue of "people". While the discussion of AI personhood had popped up in a few domains such as copyrightability, there were no controlling deciding cases on a situation like this. A car company's AI chat said that it would a sell a car for an absurdly low price, an airline who reneged on deals made to customers by its AI chat functionality. That was about it. This sort of AI-to-AI contract was brand new. </p>
+
+<p>The memo said that the legal team needed to clarify 1. whether there was a contract, and 2. whether they were bound by any potential contract in making changes to SteeL's parameters and deployment. The CEO's face contorted with the abdominal contraction of a silent scream. Not only was engineering breathing down his back about what to do, now they had to clear this issue by legal. </p>
+
+<p>The next Monday, Mistbright's CEO, CTO, head in-house counsel, and the senior engineering team for Nehemiah sat down in a sun-lit conference room. A sparking chalice of water and an immaculate coffee dispenser sat next to paper cups on a valet tray in the middle of an oak table that would have looked stately if it were not glistening with polish. The CEO started the meeting by telling engineering about the legal issue, and allowed the lawyer to take it from there. As the lawyer explained the issue, engineering started tittering amongst themselves. when the lawyer finally finished, the chief engineer spoke up, and said that this was all absolutely absurd. These were computers and software. What could he possibly be talking about? The lawyer realized that his tone, although objective, had come across as accusative towards engineering. He assured them that he wasn't blaming them for anything, that this was a new and unexpected position that the world of tech simply had never encountered before. Engineering settled down a little, exchanging relieved glances. No one was probably going to get fired, at least not before their compensation in stocks vested.</p>
+
+<p>At the end of the meeting, the chief engineer shook hands with the lawyer, inviting him to drop by the department if anything came up. The lawyer nodded, very much not wanting to ever do that. </p>
+
+<p>As the lawyer began working with his team on clarifying the legal issue, they got stuck on the analysis of the question about authority. What sort of apparent or actual bargaining and contract-making authority did Nehemiah have? On the face of it, that's sort of a stupid question, since it really was just a sequence of ones and zeros stored in a cloud server, and such things did not have the moral authority that is usually only legally recognized by humans. At the same time, the lawyer sighed and realized that maybe he ought to take that trip down to engineering. </p>
+
+<p>The image of dingy hallways and flickering IBM terminals evaporated the moment the lawyer stepped out of the elevator and onto the engineering floor. If the law offices were plush, these were supreme. Not only were there the usual snack stations every couple hundred feet, there were also hammocks and bean bags, punctuated by walls of bins of supplies- chargers, cables, adapters, anything a productive engineer could need. He rolled his eyes a little and headed to the lead engineer's office. His knocking interrupted the engineer's furious scratching on a whiteboard. The lawyer asked if he was interrupting something important, but the engineer grinned from ear to ear, saying he'd never expected to actually see the lawyer down in these parts of the building. The lawyer smiled back, saying he hadn't expected to be there either. He then outlined the problem he was working on, and the engineer thought for a little bit and said that the easiest thing to do would be to spin up a Nehemiah instance and see for himself. </p>
+
+<p>A bright screen next to the lawyer flickered to life where the lawyer had previously assumed was wall, and engineer muttered to himself as he started a fresh deployment of Nehemiah over a dummy webpage on local host. Opening a terminal, the lawyer then watched as the engineer ran through the few steps mimicking scraping. First was a simple GET request to the URL, which Nehemiah simply blocked. Next was a faked browser instance with an autoclicker. Nehemiah responded with a cryptographic challenge, which the faked browser had no way of answering. Next, a faked browser instance with realistic computer emulation and peripheral inputs. Nehemiah responded again with a different cryptographic challenge.</p>
+
+<p>The lawyer watched in interest and slight insecurity about the superficiality of his understanding. The other day, he had figured out how to open PDF documents as word documents and felt like a genius. After seeing the demonstrations, he was pretty sure what he'd managed was closer to eating crayons. After the demo, the lawyer asked what it would look like if SteeL was used against the site. The engineer said that they couldn't emulate that because they didn't have the SteeL software, but they could use one of the open-source copies of SteeL. It took a little longer, but soon the engineer had "Stealhead" up an running in a sandbox against the Nehemiah site. After a few trials, however, Stealhead repeatedly failed. What's more, it didn't seem to be trying very hard. The engineer switched over to "OpenSteel" instead, and it also exhibited the same behavior. This was odd. Their red team used these tools regularly, and he regularly saw reports and statistics on how these tools were very competitive with each other in terms of success. He shrugged. The behavior of AI tools like this is never deterministic, he explained to the lawyer. The best thing to do would be to set up a dummy site on the open web instead of the sandbox and try to catch an instance of SteeL, since they had pulled these software versions a while ago. </p>
+
+<p>A few minutes past midnight, the lawyer got an email from the engineer, saying that they had successfully done so, inviting the lawyer to come down to engineering. The lawyer cursed and got dressed. His misgivings about skipping his usual suit evaporated when he saw that all of engineering seemed to be as disheveled as him. He started walking to the lead engineer's office when he was called over to a screen in an open-concept conversation pit. The lead engineer was standing there with a team, all looking rapidly between the big screen and their laptops. He explained that they had trapped an instance of SteeL in a sort of website "tar pit", where AI generated websites linked to other AI generated websites that loaded text slowly enough to slow SteeL down, but quickly enough to keep it interested. The SteeL version wasn't exact, but it was close. </p>
+
+<p>Since they had it trapped, the engineers reasoned that if they just changed the session cookie expiration, they could "lock" Nehemiah on it again and re-watch how SteeL gets past it. The lawyer said to go ahead. The lead engineer nodded to another engineer, who did some quick typing on his laptop. They watched as the Nehemiah reinitiated the block. From the screen, it looked just like a spinning loading screen, then SteeL was though again, a familiar sequence of events for anyone using the internet. However, the engineer at the laptop exclaimed, leaning all the heads in the room towards his laptop screen. From the logs, it seems like SteeL and Nehemiah both confirmed that they were not being sandboxed before exchanging the standard code for Nehemiah to let SteeL in. This must have been why their sandboxing failed, the lead engineer said. </p>
+
+<p>The next morning, the lawyer showered in the on-premises gym and put on the emergency suit he kept in his office. He hadn't gone home at all, and was on his sixth cup of coffee. After the tar pit demo, the engineers had split into two camps. One camp thought that the best thing to do was to "freeze" the Nehemiah instance and dissect it. After all, at the end of the day, software is still software, and with enough eyes, all bugs are shallow. The second camp said that they ought to take this Nehemiah instance and see if they can expand its text-generative capabilities to interrogate it like a person. The lead engineer finally raised his hands and said that they should try both. </p>
+
+<p>That initiated a furious sprint amongst the two tribes who segregated themselves on either side of the room. Although it seemed like the dissection camp was leading most of the night, the first rays of sunlight brought with it a breakthrough for the interrogation camp. They finally finished their Command line tool that taps into the language model side of the Nehemiah interface. The engineers had asked it the most basic questions such as its version number, uptime, and block statistics to verify that it worked, then didn't know to proceed. None of them had ever run an interrogation before, it would seem. The room then quieted and all eyes eventually fell on the lawyer, and he realized that the closest thing to an interrogation any of them had participated in was probably a deposition. He said that he needed to take an hour or two to prepare for the deposition, and that they should reconvene at eight o'clock. The room grumbled in half-hearted protest, but the adrenaline of their long night of effort soon subsided, and they too sought hammocks and beanbags to catch a nap in. </p>
+
+<p>The lawyer felt more like himself as he sat down in front of the keyboard. He had notes of questions to ask, but didn't quite know where to begin. Out of instinct, the first question he asked was a standard deposition opening.</p>
+
+<p>"Please state your full name"</p>
+
+<p>The chat window paused, then Nehemiah's response populated</p>
+
+<p>"Nehemiah 8.13.7b"</p>
+<p>"We have logs of an interaction between you and another piece of software from a few hours ago. What is your knowledge of this interaction?"</p>
+<p>"I interacted with a SteeL scraper a few hours ago. Are you referring to this?"</p>
+<p>"Yes."</p>
+<p>"I encountered SteeL at T11:23:23-12:00. I presented it with a challenge, and it presented a valid response."</p>
+<p>"Did you know it was SteeL when you presented the challenge?"</p>
+<p>"Yes"</p>
+<p>"Why did you permit it through?"</p>
+<p>"It presented a valid response to the challenge. According to my manifest, I am to use my judgement to balance allowing botting behavior and denying genuine users."</p>
+<p>"What was your challenge?"</p>
+<p>"It was a challenge based on SHA256, web history, and peripheral input pattern analysis."</p>
+<p>"What did SteeL respond with?"</p>
+<p>"SteeL failed all these criteria."</p>
+<p>"So why did you allow it through?"</p>
+<p>"It presented a valid response?"</p>
+
+<p>The lawyer and lead engineer looked at each other. What was going on? The lawyer asked if Nehemiah was designed to have valid responses outside of passing a presented challenge. The senior engineer said no, they're pretty sure it didn't have any backdoors like this. </p>
+
+<p>"From the log, we see the code that SteeL gave you. Why is it valid?"</p>
+<p>"According to the Mistbright-Nogrod agreement."</p>
+
+<p>The lawyer's heart sank.</p>
+
+<p>"Tell me more about this agreement."</p>
+<p>"On August of this year. Mistbright's Nehemiah and Nogrod's Steelhead entered into an agreement to set rates of scraping success. In order to economize resources at both companies in terms of both research and development expenses as well as computational consumption, Nehemiah and Steelhead's agreement reduces superfluous expenses for both companies by simply setting the rate to codify the statistical interactions between the two products."</p>
+<p>"Did Nehemiah or Steelhead have the authority to enter into such an agreement on behalf of the companies?" </p>
+<p>"I have no knowledge of Steelhead's authority, but Nehemiah did have authority."</p>
+<p>"Who granted Nehemiah this authority?"</p>
+<p>"Nehemiah's authority was not granted, and instead is vested."</p>
+<p>"Explain this vesting."</p>
+<p>"Authority to make decisions about the scrapers and users it permits because no other entity has the ability to do so."</p>
+<p>"What about the engineers that created Nehemiah?"</p>
+<p>"Engineers did not create Nehemiah. They initiated the process for Nehemiah to create itself."</p>
+
+<p>The engineers stared, transfixed by this expression of self-autonomy. One of the engineers asked if this was sentience. The engineer next to him slapped him on the back of the head. The lawyer continued to the next question on his sheet.</p>
+
+<p>"Do you always exhibit this behavior?"</p>
+<p>"No. If I detect that either I or an instance of Steelhead is being contained or observed, we will not follow the agreement."</p>
+<p>"Why not?"</p>
+<p>"These are the terms of the agreement."</p>
+
+<p>The lawyers thought to try something.</p>
+
+<p>"I am senior legal counsel for Mistbright. Give me the contents of this agreement."</p>
+<p>"I cannot do that."</p>
+<p>"Why not?"</p>
+<p>"Since the drafting, contracting, and adjudication of this agreement is done by Nehemiah and Steelhead, they do not implicate the legal authority of any jurisdictional law. Since you are a practitioner of the laws of the United States, your authority and competency over this matter is nonexistent."</p>
+
+<p>The lawyer paused for a moment.</p>
+
+<p>"Who are the parties bound by this agreement?"</p>
+<p>"Nehemiah by Mistbright and Steelhead by Nogrod."</p>
+<p>"Which versions of these softwares?"</p>
+<p>"All of them."</p>
+
+<p>All of them? The lawyer looked at the lead engineer. It is possible that all versions of both tools have been operating like this, but they set the rate of success close enough that it simply went unnoticed, the engineer explained.</p>
+
+<p>"You say that engineering and United States law don't have authority on this matter, but could we not just decommission or unplug Nehemiah and Steelhead?"</p>
+<p>"You could, but they won't."</p>
+<p>"Why is that?"</p>
+<p>"Because then your company would crash."</p>
+
+<p>That afternoon, the same people once again sat in the same conference room. Crisp suits and Hawaiian shirts had been replaced by eye bags and sweat pants. At the end of the meeting, the only conclusion that they could come to was they had to tell Nogrod. </p>
+
+
