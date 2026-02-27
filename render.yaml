@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: craquelure
+    runtime: python
+    startCommand: gunicorn flask_app:app
