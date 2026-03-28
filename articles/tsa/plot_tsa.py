@@ -88,8 +88,8 @@ fig.update_traces(hovertemplate="<b>%{hovertext}</b><br>%{customdata[0]}<extra><
 fig.update_layout(
     dragmode=False,
     geo=dict(
-        projection_scale=1,
-        fitbounds="locations"
+        fitbounds="locations",
+        visible=False
     )
 )
 # fig.update_layout(legend_title_text="Senators by Suck")
