@@ -35,6 +35,16 @@ p {
   text-indent: 30px;
 }
 
+blockquote {
+    padding-left: 3em;
+    padding-right: 3em;
+    color: #aaf;
+}
+
+blockquote p {
+    text-indent: 0;
+}
+
 h2 {
     text-align: center; /* Ensure the article title inside the <a> is centered */
 }

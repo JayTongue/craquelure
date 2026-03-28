@@ -35,7 +35,8 @@ import plotly.express as px
 import plotly
 import json
 
-data = json.load('articles/tsa/vote_data.json')
+with open('articles/tsa/vote_data.json', 'r') as infile:
+    data = json.load(infile)
 
 df = pd.DataFrame(data)
 
@@ -43,22 +44,33 @@ df = pd.DataFrame(data)
 vote_map = {"Yea": 1, "Nay": -1, "Not Voting": 0}
 df["vote_num"] = df["vote"].map(vote_map)
 
-# Aggregate by state — sum gives: 2=both Yea, -2=both Nay, 0=split/abstain
-state_df = df.groupby("state").agg(
-    vote_sum=("vote_num", "sum"),
-    senators=("name", lambda x: "<br>".join(
-        f"{row.name} ({row.party}): {row.vote}"
-        for _, row in df[df["state"] == x.name].iterrows()
-    ))
-).reset_index()
-
 # Human-readable label for color
 def label(v):
     if v > 0: return "Yea"
     if v < 0: return "Nay"
     return "Split / Not Voting"
 
+state_df = df.groupby("state").agg(
+    vote_sum=("vote_num", "sum"),
+    senators=("name", lambda x: "<br>".join(
+        f"{name} ({df.loc[i, 'party']}): {df.loc[i, 'vote']}"
+        for i, name in x.items()
+    ))
+).reset_index()
+
 state_df["result"] = state_df["vote_sum"].apply(label)
+
+# fig = px.choropleth(
+#     state_df,
+#     locations="state",
+#     locationmode="USA-states",
+#     color="result",
+#     scope="usa",
+#     hover_name="state",
+#     hover_data={"senators": True, "result": False, "vote_sum": False, "state": False},
+#     color_discrete_map={"Yea": "lightgray", "Nay": "tomato", "Split / Not Voting": "lightgray"},
+#     # title="Senate Vote by State"
+# )
 
 fig = px.choropleth(
     state_df,
@@ -67,11 +79,21 @@ fig = px.choropleth(
     color="result",
     scope="usa",
     hover_name="state",
-    hover_data={"senators": True, "result": False, "vote_sum": False, "state": False},
-    color_discrete_map={"Yea": "steelblue", "Nay": "tomato", "Split / Not Voting": "lightgray"},
-    title="Senate Vote by State"
+    custom_data=["senators"],
+    color_discrete_map={"Yea": "lightgray", "Nay": "tomato", "Split / Not Voting": "lightgray"},
 )
 
-fig.update_layout(legend_title_text="State Vote")
+fig.update_traces(hovertemplate="<b>%{hovertext}</b><br>%{customdata[0]}<extra></extra>")
 
+# fig.update_layout(legend_title_text="Senators by Suck")
+fig.update_layout(
+    paper_bgcolor='#333',
+    plot_bgcolor='#333',
+    geo_bgcolor='#333',
+    font_color='white'
+)
+fig.update_layout(showlegend=False)
 graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+with open('static/images/map_data.js', 'w') as f:
+    f.write(f'const figData = {graph_json};')
