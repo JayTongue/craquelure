@@ -84,7 +84,7 @@ fig = px.choropleth(
 )
 
 fig.update_traces(hovertemplate="<b>%{hovertext}</b><br>%{customdata[0]}<extra></extra>")
-
+fig.update_layout(geo=dict(projection_scale=1), dragmode=False)
 # fig.update_layout(legend_title_text="Senators by Suck")
 fig.update_layout(
     paper_bgcolor='#333',
