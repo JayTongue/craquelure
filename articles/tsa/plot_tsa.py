@@ -85,11 +85,20 @@ fig = px.choropleth(
 
 fig.update_traces(hovertemplate="<b>%{hovertext}</b><br>%{customdata[0]}<extra></extra>")
 
+# fig.update_layout(
+#     dragmode=False,
+#     geo=dict(
+#         projection_scale=1,
+#         fitbounds="locations"
+#     )
+# )
+
 fig.update_layout(
     dragmode=False,
     geo=dict(
-        fitbounds="locations",
-        visible=False
+        scope='usa',
+        projection_type='albers usa',
+        showlakes=False,
     )
 )
 # fig.update_layout(legend_title_text="Senators by Suck")
