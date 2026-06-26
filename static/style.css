@@ -133,7 +133,7 @@ a:hover {
 }
 
 .centered img {
-    width: 800px;
+    width: 600px;
     max-width: 100%;
     height: auto;
 }
@@ -147,7 +147,7 @@ a:hover {
 
 .image-row .centered img {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     height: auto;
 }
 
