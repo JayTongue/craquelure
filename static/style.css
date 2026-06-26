@@ -155,6 +155,18 @@ a:hover {
     width: 30%;
 }
 
+.video-wrapper {
+  width: 600px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+}
+
 
 .content {
   max-width: 100ch;
