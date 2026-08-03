@@ -1,0 +1,91 @@
+---
+title: AI Fixed My AC Unit
+subtitle: And what that taught me about vibe coding
+created: 2026-08-03
+edited: 2026-08-03
+tags: ['Lifestyle', 'AI']
+---
+
+
+and what that taught me about vibe coding
+
+<p>One bright Sunday when the raw temp was over 100°F, my family and I discovered, to our horror, that our Air Conditioning had stopped working. We've been in our home for about four years, and although the setup was from the previous homeowner, we've rarely had issues with the AC. I did have to swap the breakers in the panels once in the past, but overall, I'm quite ignorant about AC systems and their maintenance procedures. </p>
+
+<p>WARNING: This is a narrative and rumination on my experience. Do not do what I did. House currents can kill you. Large capacitors can deliver thousands of volts. Refrigerants are deadly. Compressed pneumatic systems have made many a widow. </p>
+
+<p>The first thing I did was open up the breaker panel and toggled the switch. Nothing. Next, I opened the side of the outdoor AC unit to take a look at the dual run capacitor. This is a failure mode that I'd explored the first time the AC had issues, and it seemed like a pretty common failure mode from what I saw online. I pulled the disconnect, discharged the cap, and measured the capacitance with my multimeter. It was reading a little under tolerance. I looked around and nothing else seemed to be obviously wrong, so I made a trip to home depot to grab another cap. I also got new fuses while I was at it. </p>
+
+<p>Then I got home and installed the new cap and new fuses, and nothing. The AC was still off. I looked noticed there was another device inside the AC panel, a black box with wires running out of its exposed contacts. I had no idea what it was, so I pulled the part number and looked it up. Turns out it was a contactor. Could that be the problem? </p>
+
+<p>While I was sweating inside in front of the computer, I thought to myself "why not ask Claude?" after all, I'm always free to disregard what it says. What could it hurt? But a part of me said that this goes against every instinct. My overall heuristic for generative AI was that it could help, but could be unreliable. This meant that I only felt comfortable using AI for things that are low-stakes, or are already within or adjacent to a competency I already have. </p>
+
+<p>As previously explained, I wouldn't consider myself as knowledgeable about AC systems at all. I have general electrical knowledge- I solder and tinker around with hardware, but never worked on a residential electrical system. But it was a Sunday, and I was unlikely to be able to get someone out to fix it until Monday and given the ambient temp and the insistence of the hot Texas sun, I decided to give it a shot. </p>
+
+<p>Claude Opus 4.8 (on high) told me to cut the power again and try to spin the motor by hand because the bearings might be shot. I tried it, and the motor spun freely. Then it told me to probe across the motor leads. The voltage across the motor leads was fine. I gave it the part number that I found on the contactor, and asked if that could be the issue. It said that it was unlikely, and that the motor may have overheated and the windings may have opened. Claude said this was the most likely problem. It said the cap failed and the fan stopped running fur the compressor kept going, and the heat cooked the motor windings.  </p>
+
+<p>I really feared this outcome, since 1. if this was the case, there's no other option but to purchase a new one, and 2. the motor was a in a sealed housing, so there's no way for me to definitively diagnose it with my meter. In desperation, I found that on the side of the contactor, there was a button that was popped up. I could have looked up a spec diagram, but I figured I'd ask Claude. It told me it was a thermal overload reset. I asked it what it would do if I pressed it. Claude told me not to, since it would exacerbate the problem. </p>
+
+<p>I pressed it anyway. And the fan started spinning. </p>
+
+<p>What? Claude told me the capacitor was dead and the motor was cooked. I told Claude this, and it told me that if it's spinning, then it should be able to stay running without re-tripping. I pressed the button a few times, but as soon as I let the button go, it would pop back up and everything would stop. I told Claude this, and it said that the contactor might be fried. </p>
+
+<p>At this point, I started to suspect that Claude didn't actually know what sort of contactor I had. I told Claude to actually go and do research on the part number I gave it. It went off for like 10 minutes then said that it now realizes the part I'm talking about is a contactor, and not a fan motor. Yeah duh. I have been describing it as a contactor, and you had the part number this whole time. Why on earth did you think it was the number for the motor? You literally just pulled that out of your digital butt.</p>
+
+<p>With this information, it now told me that the button is actually a plunger to force the contacts closed and is used for technicians to test the unit. So pressing the button was actually good, and tells us that the AC is working. So the good thing now, since the fan spins with the button pressed, is that the AC unit itself is fine. The problem, however, is that the AC unit itself is fine, so we're back to square one with any diagnostic. </p>
+
+<p>A few steps ago, Claude had emphasized that I needed to make sure that the thermostat was making an active call for cooling. I thought that would maybe be the issue, especially since I have a stupid "smart" thermostat. I then started asking Claude about how to get it to actively call for cooling, but Claude told me that there's a cooldown period, but if I set the unit to cool, after the period expires there should be an active call. I waited, but nothing happened, and when I tried to reset the thermostat to cool, but it wouldn't turn on at all. I told Claude. It told me to pull the thermostat off the wall and probe the contacts behind it. </p>
+
+<p>I wasn't about to do that, since the thermostat is a single unit and there didn't seem like an easy way to pull it off. I told Claude this, and it told me that if there were power issues to this thermostat unit, there might be an issue with the 24v transformer. I asked it where to find this transformer. It basically told me that it could be anywhere- breaker panel, HVAC closet, by the water heater, in our crawl space, or in our attic. I wasn't about to go root around our crawl space or attic, so I was about to throw in the towel, maybe go over to a friend's for the night, and see how quickly we can get someone out tomorrow.</p>
+
+<p>Out of desperation, I decided to look at our furnace blower. I opened it up and found a control board and something that looked like the transformer. I described what I found to Claude, and it told me that I was looking in the right place. It then told me what terminals to probe the board to see if the 24v transformer was fine. From those two points, I was getting 24v. Claude then said that if the board was outputting 24v but the thermostat wasn't getting it, then it's probably a bad terminal connection or a broken wire somewhere in my walls. Hoping it was the easiest thing, I reseated the terminals first, but that didn't fix anything. The one thing left to do was apparently diagnose a break in a wire somewhere in the guts of the house.</p>
+
+<p>To avoid doing that, I started having a look around. One lead from the board traced to this thing called a SS2 safety switch. I measured voltage from the board to the switch, and found that the switch was causing the 24v supply to break. I asked Claude what this was, and Claude said that it was a condensate float safety switch that breaks an electrical connection when the float detects water under where the switch is positioned. Claude told me to clear the water in the pan or line, and the switch should allow the 24v to pass unimpeded. This switch was positioned about 8 ft off the ground, so standing on a chair, I got a sponge and started sponging out the water in the pipe opening where the switch sat. I probably did that for 20 minutes, but the water just kept filling back up. I told Claude, and it told me to use a wet/dry vac. Luckily, I had one. If I stood on the chair and held the vacuum in my hand, I could just about get the nozzle into the pipe opening. </p>
+
+<p>After a few minutes with the wet vac, the pipe was finally dry. I reseated the switch, put the panel cover back on, flipped the switch to power it back on, and glory hallelujah, the AC kicked on. At this point, the rest of the family had gone to a neighborhood pool, and the house had gotten up to almost 90°F. I sat inside and watch gleefully as the temps in the house finally started to drop. </p>
+
+<p>This worked for about an hour, but then it died again. Cursing, I went back outside and pulled the SS2 switch out again. There was water under the switch float, which caused it to kick off again. Same issue as last time. So what was causing the water to accumulate? At this point I was tired of talking to Claude, so I looked up condensate lines and SS2 switches in the internet, and it turns out that it's an issue that AC techs regularly address. Because cooling air and equipment causes a lot of condensation, AC setups need a way to drain that out. Often times if the AC is in a basement or below ground, it has to get pumped out. Otherwise, there's just a passive drain line that drips out somewhere. </p>
+
+<p>I looked around the furnace blower cabinet and saw a pipe dangling out. I figured this was it, so I attached the wet vac to that instead and ran it. Immediately, the nozzle hose started vibrating as it pulled gunk out of the condensate pipe. The info I found online had videos of people showing you how to pour water in the top of the line in order to help flush out the line entirely. I did this a few times, at least until the gunk chunks stopped coming out. Then reseat the switch, replace the panel, restore the power, and luckily the AC came back on again, and this time it stayed on. By bedtime, the house was under 80°F and the baby slept soundly. </p>
+
+<p>---</p>
+
+<p>While I was waiting for the temps in the house to drop back down, I had a chance to sit down and think about how that process went. For one, I was able to fix the AC, which saved us a lot of money and a sweat. But while some booster would probably want to point to this and proclaim "AI saves family from death by heat stroke", AI was not uniformly useful for this task. </p>
+
+<p>For one, there are points where AI was significantly wrong, and it required me doing the opposite of what it said to continue the repair diagnostic. </p>
+
+<p>* It told me the capacitor was dead and the fan was cooked. They were not. </p>
+<p>* It told me not to press the button on the contactor, but I did anyway. </p>
+<p>* It told me the contactor was actually a fan motor.</p>
+<p>* It told me the issue was with broken wiring in my walls. I found it was not. </p>
+
+<p>At every step of the way, I provided Claude with honest and accurate information, and it still repeatedly mislead me. </p>
+
+<p>I was able to strategically disobey by leaning on a generalized skillset of electrical knowledge- I was able to measure voltage at different spots, conductivity across switches and fuses, resistance in the motor leads, and capacitance of the capacitor. I also leaned on a healthy dose of gut intuition on "how things probably work". But with just these skills, I don't think I would have been able to get very far, because need I remind you, I don't really know how AC systems work. </p>
+
+<p>Claude was actually a decent conversation partner in this regard. If I told it what I'm seeing, It often responds in three steps: </p>
+
+<p>1. What you're seeing is X.</p>
+<p>2. That must mean Y.</p>
+<p>3. You should do Z. </p>
+
+<p>Most of the time, it gets step 1 right. When I told it I found a SS2 switch, it told me what it did. When I told about the board I found in the furnace, it told me which volts were on which leads. The notable exception to this is the contactor. Even though I gave it the part number pretty much at the start of the conversation, it took me explicitly telling it to go look that part number up on the internet for it to understand what it was. </p>
+
+<p>So if I'm going to use this as an instructive experience, I would say that Claude (at least Opus 4.8) has a lot of generalized knowledge that is very applicable to that first step. However, don't assume that the model has specific or specialized knowledge of a particular component or concept. All in all, for step 1, Claude was genuinely pretty useful. </p>
+
+<p>Step 2 is where things start to break down. Even if Claude made an accurate assessment, it often would take erroneous leaps of logic. Like when I told it I replaced the capacitor and the fan spins freely, it's conclusion was "the motor windings must be fried". It took me disobediently pushing the button and telling it to research the contactor part number for it to realize that it was wrong.</p>
+
+<p>I see this issue a lot with LLMs. They confidently assert something that's almost always plausible, and sometimes even likely, but always is asserted without consideration of even the full context, either that it already has, or what is likely to exist in the real world. It presents a possible conclusion as the dispositive one. Sometimes it's right, but most of the time in this story, it was not. I would say that its performance in step 2 is shaky at best and dubious most of the time. </p>
+
+<p>Step 3 was a total failure. Every single prompt I gave it probably ended in 2-4 things it wanted me to do. If I followed all its commands, the next morning probably would have come and still have power shut off to the house and be snaking wires through my walls. Or I would have given up and sat on my hands and waited for an AC tech or a replacement fan motor to arrive. Or I would have tried to disassemble the motor to probe the windings inside. All of these would have been costly and destructive red herrings. Definitely less than half of its action steps were actually helpful. </p>
+
+<p>So then the question is, was AI good to have for this task? Yes, definitely. However, was AI better than in-person experience? The easy answer is that no, an actual tech would certainly have been much better than AI. But what if I didn't have AI? I think that I could have pulled every part number, looked them all up, read their spec diagrams, looked up the words/concepts I didn't know, and also have figured it out. However, that likey would have taken a lot longer.</p>
+
+<p>AI was interesting to use for this task because it sort of gave me a TEMU version of both. It isn't an expert but it sounds a little like one, and it doens't have technical docs, but it can sort of talk like it does. It neither replaced deep experiential and comprehensive knowledge, nor the accuracy and reliability of authoritative resources. Instead, it apes both. </p>
+
+<p>So if both relying on AI fully and not using AI at all would have lead to a worse outcome, what characterizes the ideal middle?</p>
+
+<p>Definitely relying on accurate prior knowledge. In this case I didn't have a lot, but boy did I need it. In coding, I can see this like earned habits, consciously adopted conventions or understanding about computing paradigms that I'd studied before. The second thing is a skeptical bullshit meter. I'm already pretty used to using this with AI-generated code. It something about it doens't make sense, even if it only doens't make sense to me, I try to question it. Either I learn something or I catch it in a falsehood. </p>
+
+<p>Also useful is to be able to separate out the AI's statements into one of those three steps. Is it making an observation, a diagnostic statement, or a concretized call to action? Here, coding is different from AC repair because the AI can write code, but not repair an AC, but the framework still applies. The AI may sound like it's making an observation about a statement, invoking a lower level of scrutiny, but it could actually be jumping to a conclusion, which warrants a higher level of scrutiny. It may sound like it's drawing a conclusion, but is actually importing a recommendation for a course of action. Separating these can really help the vibe coder decide whether to trust anything the AI says. </p>
+
+<p>In the end, I think what really saw me through was not surrendering my human reason. I used it to defy the AI's instructions and challenge it's analysis, but I also used it to follow its instructions and adopt its reasoning. I knew when something was dangerous or stupid, and I was also able to be open to it when it said something smart. Continually checking the AI against my reason and my observations of the actual situation lead me to being able to accomplish something I had no idea how to do. </p>
