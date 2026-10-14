@@ -1,11 +1,14 @@
 from flask import Flask, render_template, abort, send_from_directory, url_for
 from markupsafe import Markup
+from werkzeug.middleware.proxy_fix import ProxyFix
 import os
 import frontmatter
 from slugify import slugify
+from plaintext import wants_text, text_response, render_listing, render_article
 
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)  # Render terminates TLS; keeps absolute URLs https
 app.jinja_env.filters['slugify'] = slugify
 
 articles_dir = os.path.join(os.path.dirname(__file__), 'articles')
@@ -39,6 +42,8 @@ def home():
             })
 
     articles.sort(key=lambda x: x['sort_key'], reverse=True)
+    if wants_text():
+        return text_response(render_listing(articles))
     return render_template('home.html', articles=articles, tag_filter=None)
 
 
@@ -67,6 +72,8 @@ def tag_page(tag_slug):
                 })
 
     articles.sort(key=lambda x: x['sort_key'], reverse=True)
+    if wants_text():
+        return text_response(render_listing(articles, tag_filter=tag_slug))
     return render_template('home.html', articles=articles, tag_filter=tag_slug)
 
 
@@ -82,6 +89,16 @@ def article(name):
             tags = [tag.strip() for tag in raw_tags.split(',')]
         else:
             tags = raw_tags
+
+        if wants_text():
+            return text_response(render_article(
+                title=post.get('title', name),
+                subtitle=post.get('subtitle', ''),
+                created=str(post.get('created', 'Unknown Date')),
+                edited=str(post.get('edited', 'Unknown Date')),
+                tags=tags,
+                html=html_content,
+            ))
 
         return render_template(
             'article.html',
