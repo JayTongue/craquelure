@@ -5,10 +5,12 @@ import os
 import frontmatter
 from slugify import slugify
 from plaintext import wants_text, text_response, render_listing, render_article
+import botguard
 
 
 app = Flask(__name__)
-app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)  # Render terminates TLS; keeps absolute URLs https
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)  # trust Render's proxy for client IP, https, host
+botguard.init_app(app)
 app.jinja_env.filters['slugify'] = slugify
 
 articles_dir = os.path.join(os.path.dirname(__file__), 'articles')
