@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort, send_from_directory, url_for
+from flask import Flask, render_template, abort, send_from_directory, url_for, request, redirect
 from markupsafe import Markup
 from werkzeug.middleware.proxy_fix import ProxyFix
 import os
@@ -14,6 +14,15 @@ botguard.init_app(app)
 app.jinja_env.filters['slugify'] = slugify
 
 articles_dir = os.path.join(os.path.dirname(__file__), 'articles')
+
+
+@app.before_request
+def https_for_browsers():
+    # Cloudflare lets plain http through so `curl domain` works without -L; browsers still get sent to https.
+    if '"http"' in request.headers.get('CF-Visitor', '') and not wants_text():
+        resp = redirect('https://' + request.host + request.full_path.rstrip('?'), code=301)
+        resp.headers['Vary'] = 'User-Agent, Accept'
+        return resp
 
 @app.route('/')
 def home():
