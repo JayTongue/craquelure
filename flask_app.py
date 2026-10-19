@@ -18,8 +18,9 @@ articles_dir = os.path.join(os.path.dirname(__file__), 'articles')
 
 @app.before_request
 def https_for_browsers():
-    # Cloudflare lets plain http through so `curl domain` works without -L; browsers still get sent to https.
-    if '"http"' in request.headers.get('CF-Visitor', '') and not wants_text():
+    # The Cloudflare Worker (cloudflare/worker.js) fetches plain-http requests from Render over https and marks
+    # them, so `curl domain` works without -L; browsers still get sent to https.
+    if request.headers.get('X-Visitor-Scheme') == 'http' and not wants_text():
         resp = redirect('https://' + request.host + request.full_path.rstrip('?'), code=301)
         resp.headers['Vary'] = 'User-Agent, Accept'
         return resp
